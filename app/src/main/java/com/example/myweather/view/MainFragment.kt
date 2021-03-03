@@ -22,9 +22,9 @@ class MainFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        _binding = MainFragmentBinding.inflate, container, false)
-        return binding.getRoot()
+    ): View {
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,15 +46,15 @@ class MainFragment : Fragment() {
             is AppState.Error -> {
                 binding.loadingLayout.visibility = View.GONE
                 Snackbar
-                        .make(binding.mainView, getString(R.string.error), Snackbar.LENGTH_INDEFINITE)
-                        .setAction(getString(R.string.reload)) { viewModel.getWeatherFromLocalSource() }
+                        .make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Reload") { viewModel.getWeatherFromLocalSource() }
                         .show()
             }
         }
     }
 
     private fun setData(weatherData: Weather) {
-        binding.cityName.text = weatherData.city.city
+        binding.cityName.text = weatherData.city.cityName
         binding.cityCoordinates.text = String.format(
                 getString(R.string.city_coordinates),
                 weatherData.city.lat.toString(),
