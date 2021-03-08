@@ -2,6 +2,7 @@ package com.example.myweather.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.androidonkotlin.view.main.MainFragment
 import com.example.myweather.R
 
 class MainActivity : AppCompatActivity() {
@@ -15,5 +16,4 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
         }
     }
-
 }
