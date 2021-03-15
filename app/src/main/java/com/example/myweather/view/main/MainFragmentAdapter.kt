@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidonkotlin.view.main.MainFragment
 import com.example.myweather.R
 import com.example.myweather.model.Weather
+import kotlinx.android.synthetic.main.fragment_main_recycler_item.view.*
 
 class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnItemViewClickListener?)
     : RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
@@ -41,12 +42,9 @@ class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnIt
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(weather: Weather) {
-            itemView.apply {
-                findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
-                        weather.city.cityName
-                setOnClickListener {
-                    onItemViewClickListener?.onItemViewClick(weather)
-                }
+            itemView.mainFragmentRecyclerItemTextView.text = weather.city.city
+            itemView.setOnClickListener{
+                onItemViewClickListener?.onItemViewClick(weather)
             }
         }
     }
