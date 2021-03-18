@@ -1,7 +1,5 @@
 package com.example.myweather.model
 
-import java.util.concurrent.locks.Condition
-
 class WeatherDTO(
         val fact: FactDTO?
 )
