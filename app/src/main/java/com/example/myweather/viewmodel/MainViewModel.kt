@@ -3,8 +3,8 @@ package com.example.androidonkotlin.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myweather.model.Repository
-import com.example.myweather.model.RepositoryImpl
+import com.example.myweather.repository.Repository
+import com.example.myweather.repository.RepositoryImpl
 import com.example.myweather.viewmodel.AppState
 import java.lang.Thread.sleep
 
