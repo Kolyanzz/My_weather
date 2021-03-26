@@ -26,7 +26,7 @@ class DetailsViewModel(
         detailsRepositoryImpl.getWeatherDetailsFromServer(lat, lon, callback)
     }
 
-    fun saveCityToDB(weather: Weather){
+    fun saveCityToDB(weather: Weather) {
         historyRepository.saveEntity(weather)
     }
 

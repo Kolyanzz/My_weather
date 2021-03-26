@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myweather.view.main.MainFragment
 import com.example.myweather.R
+import com.example.myweather.view.contacts.ContentProviderFragment
 import com.example.myweather.view.history.HistoryFragment
+import com.example.myweather.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                             .add(R.id.container, HistoryFragment.newInstance())
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_content_provider -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                            .add(R.id.container, ContentProviderFragment.newInstance())
                             .addToBackStack("")
                             .commitAllowingStateLoss()
                 }

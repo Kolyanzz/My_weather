@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.myweather.viewmodel.MainViewModel
 import com.example.myweather.R
 import com.example.myweather.databinding.FragmentMainBinding
 import com.example.myweather.model.Weather
 import com.example.myweather.view.detalis.DetailsFragment
-import com.example.myweather.view.main.MainFragmentAdapter
 import com.example.myweather.viewmodel.AppState
+import com.example.myweather.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
 private const val IS_WORLD_KEY = "LIST_OF_CITIES_KEY"

@@ -14,7 +14,7 @@ class App : Application() {
 
     companion object {
         private var appInstance: App? = null
-        private  var db: HistoryDatabase? = null
+        private var db: HistoryDatabase? = null
         private const val DB_NAME = "History.db"
 
         private val appHistoryDao by lazy {
@@ -28,6 +28,7 @@ class App : Application() {
                     .build()
                     .historyDao()
         }
+
         fun getHistoryDao(): HistoryDao = appHistoryDao
     }
 }
