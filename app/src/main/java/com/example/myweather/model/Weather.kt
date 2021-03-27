@@ -12,9 +12,10 @@ data class Weather(
         val icon: String? = "bkn_n"
 ) : Parcelable
 
-fun getDefaultCity() = City(city = "<Благовещенск>", lat = 47.4557, lon = 122.035)
+fun getDefaultCity() = City(city = "<Благовещенск>", lat = 50.2858, lon = 127.543)
 
 fun getRussianCities() = listOf(
+        Weather(City("Благовещенск", 50.2858, 127.543), 1, 1),
         Weather(City("Москва", 55.755826, 37.617299900000035), 1, 1),
         Weather(City("Санкт-Петербург", 59.9342802, 30.335098600000038), 2, 2),
         Weather(City("Новосибирск", 55.00835259999999, 82.93573270000002), 3, 3),

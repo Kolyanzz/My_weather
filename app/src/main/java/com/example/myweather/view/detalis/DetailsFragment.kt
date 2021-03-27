@@ -103,11 +103,18 @@ class DetailsFragment : Fragment() {
     }
 
     private fun saveCity(city: City, weather: Weather) {
-        viewModel.saveCityToDB(Weather(city, weather.temperature, weather.feelsLike, weather.condition))
+        viewModel.saveCityToDB(
+                Weather(
+                        city,
+                        weather.temperature,
+                        weather.feelsLike,
+                        weather.condition))
     }
 
     private fun getHeaderPicture(cityName: String) {
         when (cityName) {
+            "Благовещенск" -> chosenHeaderPicture = "https://www.todaykhv.ru/upload/resized/6b8/" +
+                    "6b8e94d8f21cf0169af1ab0e56a88c86.jpg"
             "Москва" -> chosenHeaderPicture = "https://freepngimg.com/download/temple/" +
                     "93582-building-basils-moscow-petersburg-saint-landmark-cathedral.png"
             "Санкт-Петербург" -> chosenHeaderPicture = "https://e7.pngegg.com/pngimages/170/463/png-" +
