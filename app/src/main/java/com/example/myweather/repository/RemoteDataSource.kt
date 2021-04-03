@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
+
     private val weatherApi = Retrofit.Builder()
             .baseUrl("https://api.weather.yandex.ru/")
             .addConverterFactory(

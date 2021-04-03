@@ -43,10 +43,8 @@ class ContentProviderFragment : Fragment() {
             when {
                 ContextCompat.checkSelfPermission(it, Manifest.permission.READ_CONTACTS) ==
                         PackageManager.PERMISSION_GRANTED -> {
-                    //Доступ к контактам на телефоне есть
                     getContacts()
                 }
-                //Опционально: если нужно пояснение перед запросом разрешений
                 shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS) -> {
                     AlertDialog.Builder(it)
                             .setTitle("Доступ к контактам")
@@ -73,17 +71,15 @@ class ContentProviderFragment : Fragment() {
 
     override fun onRequestPermissionsResult(
             requestCode: Int,
-            permissions: Array<String>,
+            permissions: Array<out String>,
             grantResults: IntArray
     ) {
         when (requestCode) {
             REQUEST_CODE -> {
-                // Проверяем, дано ли пользователем разрешение по нашему запросу
-                if ((grantResults.isNotEmpty() &&
-                                grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                if (grantResults.isNotEmpty() &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getContacts()
                 } else {
-                    // Поясните пользователю, что экран останется пустым, потому что доступ к контактам не предоставлен
                     context?.let {
                         AlertDialog.Builder(it)
                                 .setTitle("Доступ к контактам")
@@ -100,9 +96,7 @@ class ContentProviderFragment : Fragment() {
 
     private fun getContacts() {
         context?.let {
-            // Получаем ContentResolver у контекста
             val contentResolver: ContentResolver = it.contentResolver
-            // Отправляем запрос на получение контактов и получаем ответ в виде Cursor'а
             val cursorWithContacts: Cursor? = contentResolver.query(
                     ContactsContract.Contacts.CONTENT_URI,
                     null,
@@ -113,9 +107,7 @@ class ContentProviderFragment : Fragment() {
 
             cursorWithContacts?.let { cursor ->
                 for (i in 0..cursor.count) {
-                    // Переходим на позицию в Cursor'е
                     if (cursor.moveToPosition(i)) {
-                        // Берём из Cursor'а столбец с именем
                         val name = cursor.getString(cursor.getColumnIndex(
                                 ContactsContract.Contacts.DISPLAY_NAME)
                         )
@@ -133,6 +125,7 @@ class ContentProviderFragment : Fragment() {
             textSize = resources.getDimension(R.dimen.contacts_text_size)
         })
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

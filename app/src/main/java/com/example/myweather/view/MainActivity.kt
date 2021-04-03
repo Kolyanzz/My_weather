@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myweather.R
 import com.example.myweather.view.contacts.ContentProviderFragment
+import com.example.myweather.view.googlemaps.GoogleMapsFragment
 import com.example.myweather.view.history.HistoryFragment
 import com.example.myweather.view.main.MainFragment
 
@@ -51,6 +52,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
+            R.id.menu_google_maps -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                            .add(R.id.container, GoogleMapsFragment())
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                }
+                true
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
