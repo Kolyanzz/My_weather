@@ -24,7 +24,17 @@ android {
         viewBinding true
     }
 
-    buildTypes.each{
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file('C:\\Users\\Kolyamba\\AndroidStudioProjects\\Myweather\\Keystore.jks')
+        }
+    }
+
+    buildTypes.each {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
         def apiKey = properties.getProperty("yandex_weather_api_key", "")
@@ -33,16 +43,35 @@ android {
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TYPE", '"RELEASE"'
+        }
+        debug {
+            versionNameSuffix ".debug"
+            buildConfigField "String", "TYPE", '"RELEASE"'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    flavorDimensions 'version'
+    productFlavors {
+        freeConfig {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        padi {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
     }
 }
 
@@ -72,12 +101,12 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    //implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    //implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.room:room-runtime:2.2.6'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    //annotationProcessor 'androidx.room:room-compiler:2.2.6'
+    annotationProcessor 'androidx.room:room-compiler:2.2.6'
 }
 repositories {
     mavenCentral()
